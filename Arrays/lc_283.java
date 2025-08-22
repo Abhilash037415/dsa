@@ -23,5 +23,6 @@ public class lc_283 {
         for (int current : nums) {
             System.out.print(current+" ");
         }
+        input.close();
     }
 }

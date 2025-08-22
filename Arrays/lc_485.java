@@ -19,6 +19,6 @@ public class lc_485 {
                 count++;
             }
         }
-
+        input.close();
     }
 }
