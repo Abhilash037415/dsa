@@ -2,13 +2,12 @@ import java.util.Scanner;
 
 public class lc_754 {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int n = input.nextInt();
+        Scanner smth = new Scanner(System.in);
+        int n = smth.nextInt();
         int array[] = new int[n];
         for(int i = 0; i < n; i++) {
-            array[i] = input.nextInt();
+            array[i] = smth.nextInt();
         }
-        
         int prefixSum[] = new int[n];
         int suffixSum[] = new int[n];
         int sum=0;
@@ -28,6 +27,6 @@ public class lc_754 {
             }
         }
         System.out.println(-1);
-        input.close();
+        smth.close();
     }
 }

@@ -22,5 +22,6 @@ public class lc_1572 {
         }
 
         System.out.println(sum);
+        input.close();
     }
 }

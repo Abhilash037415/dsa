@@ -23,6 +23,6 @@ public class lc_1672 {
         }
 
         System.out.println(maxWealth);
-
+        input.close();
     }
 }

@@ -23,6 +23,6 @@ public class lc_1732 {
         }
 
         System.out.println(maxAltitude);
-
+        input.close();
     }
 }
