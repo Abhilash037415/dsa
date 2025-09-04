@@ -1,4 +1,11 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+import java.util.Set;
 
 class State {
     int[][] pawns;
@@ -16,10 +23,14 @@ class State {
         this.parent = parent;
     }
 
-    int f() { return g + h; }
+    int f() {
+        return g + h;
+    }
+
     String encode() {
         String sb = "";
-        for (int[] p : pawns) sb+= p[0] + "," + p[1] + ";";
+        for (int[] p : pawns)
+            sb += p[0] + "," + p[1] + ";";
         return sb;
     }
 }
@@ -27,12 +38,14 @@ class State {
 class Chessboard {
     int n;
 
-    Chessboard(int n) { this.n = n; }
+    Chessboard(int n) {
+        this.n = n;
+    }
 
     int heuristic(int[][] pawns) {
         int h = 0;
         for (int i = 0; i < pawns.length; i++) {
-            h += Math.abs(pawns[i][0] - (n-i)) + Math.abs(pawns[i][1] - n);
+            h += Math.abs(pawns[i][0] - (n - i)) + Math.abs(pawns[i][1] - n);
         }
         return h;
     }
@@ -40,14 +53,15 @@ class Chessboard {
     boolean isGoal(int[][] pawns) {
         for (int i = 0; i < pawns.length; i++) {
             int goalX = n - i, goalY = n;
-            if (pawns[i][0] != goalX || pawns[i][1] != goalY) return false;
+            if (pawns[i][0] != goalX || pawns[i][1] != goalY)
+                return false;
         }
         return true;
     }
 
     List<State> getNeighbors(State s) {
         List<State> neighbors = new ArrayList<>();
-        int[][] moves = {{0,1},{0,-1},{1,0},{-1,0},{0,0}};
+        int[][] moves = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 }, { 0, 0 } };
         for (int i = 0; i < s.pawns.length; i++) {
             for (int[] mv : moves) {
                 int[][] newPawns = new int[s.pawns.length][2];
@@ -68,9 +82,11 @@ class Chessboard {
     boolean isValid(int[][] pawns) {
         Set<String> seen = new HashSet<>();
         for (int[] p : pawns) {
-            if (p[0] < 1 || p[0] > n || p[1] < 1 || p[1] > n) return false;
+            if (p[0] < 1 || p[0] > n || p[1] < 1 || p[1] > n)
+                return false;
             String key = p[0] + "," + p[1];
-            if (!seen.add(key)) return false;
+            if (!seen.add(key))
+                return false;
         }
         return true;
     }
@@ -94,9 +110,11 @@ class Chessboard {
                 printSolution(curr);
                 return;
             }
-            if (!closed.add(curr.encode())) continue;
+            if (!closed.add(curr.encode()))
+                continue;
             for (State next : getNeighbors(curr)) {
-                if (!closed.contains(next.encode())) open.add(next);
+                if (!closed.contains(next.encode()))
+                    open.add(next);
             }
         }
         System.out.println("No solution found.");
@@ -120,7 +138,7 @@ class Chessboard {
     }
 }
 
-public class m1t2e1 { //main class
+public class m1t2e1 { // main class
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the value of n: ");
